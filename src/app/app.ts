@@ -7,6 +7,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   providers: [],
   directives: [ ROUTER_DIRECTIVES ],
   templateUrl: './app.html',
+  styleUrls: ['./style.scss']
 })
 export class App {
   constructor() {}
