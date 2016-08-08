@@ -1,4 +1,6 @@
 var webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 var path = require('path');
 
 
@@ -15,8 +17,18 @@ var webpackConfig = {
   },
 
   plugins: [
+    new WebpackMd5Hash(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({ template: './src/index.html', inject: false }),
+    /*new webpack.optimize.UglifyJsPlugin({
+      //comments: false,
+      //minimize: true,
+      //compress: true,
+      //mangle:   true
+    }),*/
   ],
 
   module: {
@@ -38,9 +50,9 @@ var defaultConfig = {
   cache: true,
   debug: true,
   output: {
-    filename: '[name].bundle.js',
-    sourceMapFilename: '[name].map',
-    chunkFilename: '[id].chunk.js'
+    filename: '[name].bundle.js', // filename: '[name]-[hash].bundle.js'
+    sourceMapFilename: '[name].map', // sourceMapFilename: '[name]-[hash].map'
+    chunkFilename: '[id].chunk.js' // chunkFilename: '[id]-[hash].chunk.js'
   },
 
   resolve: {

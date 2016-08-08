@@ -8,6 +8,7 @@
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base src",
+    "server:dist": "npm run build && webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 8000  --content-base build",
     "start": "npm run server"
   },
   "contributors": [
@@ -25,9 +26,11 @@
     "to-string-loader": "^1.1.4",
     "typescript": "~1.8.9",
     "typings": "~1.0.3",
+    "html-webpack-plugin": "^2.21.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0",
-    "webpack-merge": "^0.8.4"
+    "webpack-merge": "^0.8.4",
+    "webpack-md5-hash": "0.0.5"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
