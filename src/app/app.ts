@@ -5,11 +5,12 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   selector: 'app',
   pipes: [],
   providers: [],
-  directives: [ ROUTER_DIRECTIVES ],
+  directives: [ROUTER_DIRECTIVES],
   templateUrl: './app.html',
-  styleUrls: ['./style.scss']
+  styleUrls: ['./app.scss']
 })
 export class App {
-  constructor() {}
+  constructor() {
 
+  }
 }

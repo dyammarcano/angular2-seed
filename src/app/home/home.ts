@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
   pipes: [],
   providers: [],
   directives: [],
-  styleUrls: ['./home.css'],
+  styleUrls: ['./home.scss'],
   templateUrl: './home.html'
 })
 export class Home {
