@@ -6,8 +6,8 @@
     "postinstall": "typings install",
     "rimraf": "rimraf",
     "clean": "rimraf -- build",
-    "build": "npm run clean && webpack --inline --colors --progress --display-error-details --display-cached",
-    "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000 --content-base src --watch",
+    "build": "npm run clean && webpack --config './config/webpack.config.js' --inline --colors --progress --display-error-details --display-cached",
+    "server": "webpack-dev-server --config './config/webpack.config.js' --inline --colors --progress --display-error-details --display-cached --port 3000 --content-base src --watch",
     "start": "npm run server"
   },
   "contributors": [

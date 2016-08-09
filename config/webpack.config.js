@@ -1,31 +1,35 @@
-const webpack = require('webpack')
-const WebpackMd5Hash = require('webpack-md5-hash');
+const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 
-// Our Webpack Defaults
-module.exports = defaultConfig = {
+// Webpack Config
+module.exports = webpackConfig = {
   entry: {
     'polyfills': './src/polyfills.browser.ts',
     'vendor': './src/vendor.browser.ts',
     'main': './src/main.browser.ts',
   },
   output: {
-    path: './build',
+    path: './dist',
   },
-  devtool: 'cheap-module-source-map',
-  cache: true,
-  debug: true,
-  resolve: {
-    root: [
-      path.join(__dirname, 'src')
-    ],
-    extensions: [
-      '',
-      '.ts',
-      '.js'
-    ]
-  },
+  plugins: [
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: false
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: [
+        'main',
+        'vendor',
+        'polyfills'
+      ],
+      minChunks: Infinity
+    }),
+  ],
   module: {
     loaders: [
       // .ts files for TypeScript
@@ -53,21 +57,30 @@ module.exports = defaultConfig = {
         loader: 'raw-loader'
       }
     ]
+  }
+};
+
+
+// Our Webpack Defaults
+module.exports = defaultConfig = {
+  devtool: 'cheap-module-source-map',
+  cache: true,
+  debug: true,
+  output: {
+    filename: '[name].bundle.js',
+    sourceMapFilename: '[name].map',
+    chunkFilename: '[id].chunk.js'
   },
-  plugins: [
-    new WebpackMd5Hash(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: [
-        'main',
-        'vendor',
-        'polyfills'
-      ],
-      minChunks: Infinity
-    }),
-  ],
+  resolve: {
+    root: [
+      path.join(__dirname, 'src')
+    ],
+    extensions: [
+      '',
+      '.ts',
+      '.js'
+    ]
+  },
   devServer: {
     historyApiFallback: true,
     watchOptions: {
@@ -84,3 +97,6 @@ module.exports = defaultConfig = {
     setImmediate: 0
   }
 };
+
+
+module.exports = webpackMerge(defaultConfig, webpackConfig);
