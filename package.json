@@ -6,6 +6,7 @@
     "postinstall": "typings install",
     "rimraf": "rimraf",
     "clean": "rimraf -- build",
+    "reinstall": "rimraf -- node_modules typings && npm install",
     "build": "npm run clean && webpack --config './config/webpack.config.js' --inline --colors --progress --display-error-details --display-cached",
     "server": "webpack-dev-server --config './config/webpack.config.js' --inline --colors --progress --display-error-details --display-cached --port 3000 --content-base src --watch",
     "start": "npm run server"
