@@ -11,7 +11,6 @@ import '@angular/router';
 // RxJS 5
 import 'rxjs/Rx';
 import 'socket.io-client';
-import 'angular2-jwt';
 import 'lodash';
 
 // For vendors for example jQuery, Lodash, angular2-jwt import them here
